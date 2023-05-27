@@ -3,8 +3,8 @@ const webpack = require("webpack")
 // this webpack package is for lazy loading JS files
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
-//for webpack pwa mobile pack to work
-// const WebpackPwaManifest = require("webpack-pwa-manifest");
+// for webpack pwa mobile pack to work
+const WebpackPwaManifest = require("webpack-pwa-manifest");
 
 // for webpack to work, you need the input which is the entry, output to where it is going, and the development stage
 module.exports = {
@@ -32,22 +32,22 @@ module.exports = {
         new BundleAnalyzerPlugin({
             analyzerMode: "static", // the report output to an HTML file in the dist folder
         })
-        // ,
-        // new WebpackPwaManifest({
-        //     name: "Food Event",
-        //     short_name: "Foodies",
-        //     description: "An app that allows you to view upcoming food events.",
-        //     start_url: "../index.html",
-        //     background_color: "#01579b",
-        //     theme_color: "#ffffff",
-        //     fingerprints: false,
-        //     inject: false,
-        //     icons: [{
-        //       src: path.resolve("assets/img/icons/icon-512x512.png"),
-        //       sizes: [96, 128, 192, 256, 384, 512],
-        //       destination: path.join("assets", "icons")
-        //     }]
-        //   })
+        ,
+        new WebpackPwaManifest({
+            name: "Food Event",
+            short_name: "Foodies",
+            description: "An app that allows you to view upcoming food events.",
+            start_url: "../index.html",
+            background_color: "#01579b",
+            theme_color: "#ffffff",
+            fingerprints: false,
+            inject: false,
+            icons: [{
+              src: path.resolve("assets/img/icons/icon_512x512.png"),
+              sizes: [96, 128, 192, 256, 384, 512],
+              destination: path.join("assets", "icons")
+            }]
+          })
     ],
     mode: 'development',
     module: {
@@ -84,6 +84,6 @@ module.exports = {
             directory: path.join(__dirname, '/')
         },
         compress: true,
-        port: 8080
+        port: 9000
     }
 }

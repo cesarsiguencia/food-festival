@@ -16,10 +16,11 @@ const FILES_TO_CACHE = [
     "./assets/css/style.css",
     "./assets/css/bootstrap.css",
     "./assets/css/tickets.css",
+    "./assets/img/icons/icon_512x512.png",
     "./dist/app.bundle.js",
     "./dist/events.bundle.js",
     "./dist/tickets.bundle.js",
-    "./dist/schedule.bundle.js"
+    "./dist/schedule.bundle.js",
 ];
 
 // self instead of window because for service workers, they are activated before the window object is created, use self instead
