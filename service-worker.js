@@ -3,7 +3,7 @@
 //Constraints
 const APP_PREFIX = 'FoodFest-';   // name of app  
 const VERSION = 'version_01';
-const CACHE_NAME = APP_PREFIX + VERSION; // string combination of the above
+const CACHE_NAME = APP_PREFIX + VERSION; // string combination of the above, a reference to the new version for us to know when we see the cache in the devtools
 
 console.log("service worker loading")
 
@@ -32,6 +32,9 @@ self.addEventListener('install', function (e) {
         })
     )
 })
+// We use e.waitUntil to tell the browser to wait until the work is complete before terminating the service worker. This ensures that the service worker doesn't move on from the installing phase until it's finished executing all of its code.
+
+// We use caches.open to find the specific cache by name, then add every file in the FILES_TO_CACHE array to the cache.
 
 // ONCE WE ARE READY TO ACTIVATE, WE CLEAR OUT ANY OLD DATA FROM CACHE, AND TELL SERVICE WORKER HOW TO MANAGE CACHES
 self.addEventListener('activate', function(e){
@@ -55,15 +58,19 @@ self.addEventListener('activate', function(e){
     })
   )
 })
+// .keys() returns an array of all cache names, which we're calling keyList. keyList is a parameter that contains all cache names under <username>.github.io. Because we may host many sites from the same URL, we should filter out caches that have the app prefix. We'll capture the ones that have that prefix, stored in APP_PREFIX, and save them to an array called cacheKeeplist using the .filter() method.
+
+// This last bit of the activate listener returns a Promise that resolves once all old versions of the cache have been deleted.
+// The following code shows the activate listener as it should appear now:
 
 // to finally retrieve information from the cache after we have managed old caches, cleared out old service workers, and added thee necessary files to the cache
 self.addEventListener('fetch', function (e) {
   console.log('fetch request : ' + e.request.url)
 
-  e.respondWith( // send resources from service worker to https
+  e.respondWith( // send resources from service worker to https, this method will intercept the http responce in order to send resources from the service worker
       // will check if request is stored in the cache or not, if it is, respondWith will grab the resource from the cache
       caches.match(e.request).then(function (request) { //match with same resource in cache
-        if (request) {  // if cache is available, respond with cache
+        if (request) {  // if cache is available, respond with cache if it already exists 
           console.log('responding with cache : ' + e.request.url)
           return request
         } else {  // if there are no cache, try fetching request
@@ -77,6 +84,8 @@ self.addEventListener('fetch', function (e) {
   )
 })
 
+// Here, we listen for the fetch event, log the URL of the requested resource, and then begin to define how we will respond to the request.
+// Notice that we're using a method on the event object called respondWith to intercept the fetch request. In the code that we'll be writing next, the following lines will check to see if the request is stored in the cache or not. If it is stored in the cache, e.respondWith will deliver the resource directly from the cache; otherwise the resource will be retrieved normally.
 
 
 
