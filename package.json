@@ -24,12 +24,7 @@
   "homepage": "https://github.com/cesarsiguencia/food-festival#readme",
   "devDependencies": {
     "file-loader": "^6.2.0",
-<<<<<<< HEAD
-    "gh-pages": "^5.0.0",
-    "webpack": "^5.72.1",
-=======
     "webpack": "^5.84.1",
->>>>>>> nowebpack
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.9.0",
