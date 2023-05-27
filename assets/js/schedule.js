@@ -1,6 +1,6 @@
 require("bootstrap");
 const createEl = require("./domMethods");
-const { createLoremIpsum, dateConverter } = require("./helpers");
+const dateConverter = require("./helpers");
 
 $(document).ready( function() {
     // DOM manipulation code specific to each page.
@@ -34,6 +34,7 @@ $(document).ready( function() {
     {
         title: 'Harvest Festival',
         start: new Date(y, m+1, 20),
+        description: `Lorem ipsum dolor amet tousled brooklyn meditation, polaroid offal kale chips raw denim tumblr succulents jianbing listicle. Man braid godard VHS freegan bespoke fixie XOXO ramps lo-fi edison bulb prism gochujang photo booth. Messenger bag bicycle rights trust fund franzen street art mixtape helvetica, sriracha dreamcatcher live-edge microdosing.`,
         image: "https://images.unsplash.com/photo-1474440692490-2e83ae13ba29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
     },
     {
@@ -89,7 +90,7 @@ $(document).ready( function() {
       const cards = events.map((event) => (
           createEl("div", {class: "card-body clickable", onClick: () => onEventClick(event)}, 
           createEl("h5", {class: "card-title"}, event.title || ""),
-          createEl("p", {class: "card-text"}, event.description || createLoremIpsum()),
+          createEl("p", {class: "card-text"}, event.description),
           createEl("hr")
           )
       ))
