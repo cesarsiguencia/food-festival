@@ -20,7 +20,7 @@ module.exports = {
     output: {
         // where are they going, make sure all HTML files use them 
         filename: "[name].bundle.js",
-        // path: __dirname + "/dist",
+        path: __dirname + "/dist",
         publicPath: 'production' ? '/food-festival-2/dist' : _dirname + "/dist"
     },
     plugins: [
