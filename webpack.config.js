@@ -20,7 +20,8 @@ module.exports = {
     output: {
         // where are they going, make sure all HTML files use them 
         filename: "[name].bundle.js",
-        path: __dirname + "/dist",
+        // path: __dirname + "/dist",
+        publicPath: 'production' ? '/food-festival-2' : _dirname + "/dist"
     },
     plugins: [
         // we deleted initial jquery api, so now we have to install it in the terminal and use it here as a plugin
