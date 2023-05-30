@@ -1,10 +1,8 @@
 require("bootstrap");
-// const createLoremIpsum = require("./helpers");
 const createEl = require("./domMethods");
 
 
 $(document).ready( function() {
-    // DOM manipulation code specific to each page.
     const currentEvent = JSON.parse(localStorage.getItem("currentEvent")) || {
         title: "Title Placeholder",
         subtitle: "",
@@ -19,7 +17,6 @@ $(document).ready( function() {
         createEl("div", {class: "card-body"}, 
           createEl("h1", {class: "card-title"}, currentEvent.title || ""),
           createEl("h2", {class: "text-muted"}, currentEvent.subtitle || ""),
-          // createEl("p", {class: "card-text mt-3"}, currentEvent.description || createLoremIpsum(100)),
           createEl("p", {class: "card-text mt-3"}, currentEvent.description),
           createEl("a", {class: "btn btn-primary", href: "tickets.html"}, "Buy Tickets")
         )

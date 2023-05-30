@@ -3,7 +3,6 @@ const createEl = require("./domMethods");
 const dateConverter = require("./helpers");
 
 $(document).ready( function() {
-    // DOM manipulation code specific to each page.
     const date = new Date();
     const d = date.getDate();
     const m = date.getMonth();
