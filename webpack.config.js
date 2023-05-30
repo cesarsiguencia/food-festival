@@ -15,7 +15,7 @@ module.exports = {
     output: {
         filename: "[name].bundle.js",
         path: __dirname + "/dist",
-        publicPath: 'production' ? '/food-festival-2/dist' : _dirname + "/dist"
+        publicPath: 'production' ? '/food-festival/dist' : _dirname + "/dist"
     },
     plugins: [
         new webpack.ProvidePlugin({
